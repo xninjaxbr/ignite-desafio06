@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+// eslint-disable-next-line camelcase
+import { Nunito_Sans } from 'next/font/google'
 import './globals.css'
+import { NextAuthProvider } from './lib/auth/nextAuthProvider'
 
-const inter = Inter({ subsets: ['latin'] })
+const nunito = Nunito_Sans({ subsets: ['latin'], variable: '--font-nunito' })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,8 +17,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="pt-BR">
+      <body
+        className={`${nunito.variable} bg-Mll_gray_800 font-sans text-Mll_gray_100`}
+      >
+        <NextAuthProvider>
+          <div className="m-auto box-border max-w-6xl overflow-hidden ">
+            {children}
+          </div>
+        </NextAuthProvider>
+      </body>
     </html>
   )
 }
